@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita de Torta de Limão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        body {
+            background-color: #f0f2f5;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            padding: 10px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .container {
+            max-width: 100%;
+            margin: auto;
+            padding: 0;
+        }
+        h1 {
+            font-family: 'Roboto', sans-serif;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .card-header {
+            background-color: #1abc9c;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 10px 15px;
+        }
+        .card-body {
+            padding: 15px;
+            font-size: 1rem;
+        }
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            padding: 10px;
+            border-radius: 10px;
+            flex-direction: column;
+        }
+        .step:hover {
+            background-color: #ecf0f1;
+        }
+        .step input[type="checkbox"] {
+            margin-right: 15px;
+            margin-top: 5px;
+            transform: scale(1.5);
+            transition: transform 0.3s ease;
+        }
+        .step input[type="checkbox"]:checked {
+            transform: scale(1.75);
+        }
+        .step p {
+            margin: 0;
+            font-size: 1rem;
+            color: #34495e;
+            line-height: 1.5;
+        }
+        .step button {
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        #night-mode-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #34495e;
+        }
+        .ingredient-check {
+            margin-right: 10px;
+        }
+        #generate-shopping-list {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+        }
+        #shopping-list {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #e74c3c;
+        }
+        #timer {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            color: #2980b9;
+            text-align: center;
+        }
+        @media (min-width: 768px) {
+            .step {
+                flex-direction: row;
+            }
+            .step button {
+                width: auto;
+                margin-left: 10px;
+                margin-top: 0;
+            }
+            #generate-shopping-list {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <i id="night-mode-toggle" class="fas fa-moon"></i>
+
+    <div class="container">
+        <h1 class="mb-4">Receita de Torta de Limão</h1>
+
+        <div class="card">
+            <div class="card-header">
+                Ingredientes
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><input type="checkbox" class="ingredient-check" id="ing1">Manteiga</li>
+                    <li><input type="checkbox" class="ingredient-check" id="ing2">Bolacha Maria (400g)</li>
+                    <li><input type="checkbox" class="ingredient-check" id="ing3">3 Limões</li>
+                    <li><input type="checkbox" class="ingredient-check" id="ing4">2 Caixas de Creme de Leite (Italac)</li>
+                    <li><input type="checkbox" class="ingredient-check" id="ing5">2 Caixas de Leite Condensado (Italac)</li>
+                </ul>
+                <button class="btn btn-primary mt-2" id="generate-shopping-list">Gerar Lista de Compras</button>
+                <p id="shopping-list"></p>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                Modo de Preparo
+            </div>
+            <div class="card-body">
+                <div class="step">
+                    <input type="checkbox" id="step1">
+                    <p>Triture 2 pacotinhos de bolacha maria (Pacote maior que vem com 3). Após triturar, misture com 4 colheres de sopa de manteiga até incorporar toda a manteiga na bolacha triturada. Se precisar, adicione mais manteiga até dar ponto na massa, que deve ficar firme. Porém, tome cuidado para não colocar manteiga demais e deixar a massa úmida. Na sequência, unte a forma de fundo removível e coloque a massa na forma. Pode colocar primeiro no fundo da forma; uma dica para moldar o fundo é usar uma tampa de ferro que vem nos vidros de conserva. Depois, molde as paredes da torta e asse no forno por 15 min a 180 graus ou até dourar a massa.</p>
+                    <button class="btn btn-secondary btn-sm mt-2" id="start-timer">Iniciar Timer</button>
+                </div>
+                <div id="timer"></div>
+                <div class="step">
+                    <input type="checkbox" id="step2">
+                    <p>Esprema o suco dos 3 limões e reserve.</p>
+                </div>
+                <div class="step">
+                    <input type="checkbox" id="step3">
+                    <p>No liquidificador, bata o creme de leite com o leite condensado. Após se misturarem bem, com o liquidificador ligado, coloque o suco de limão aos poucos até endurecer.</p>
+                </div>
+                <div class="step">
+                    <input type="checkbox" id="step4">
+                    <p>Depois, despeje o mousse na massa assada e coloque na geladeira por no mínimo 2-3 horas.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Função para salvar no localStorage
+        function saveToLocalStorage(key, value) {
+            localStorage.setItem(key, value);
+        }
+
+        // Função para carregar do localStorage
+        function loadFromLocalStorage(key) {
+            return localStorage.getItem(key);
+        }
+
+        // Modo Noturno
+        $('#night-mode-toggle').click(function () {
+            $('body').toggleClass('night-mode');
+            const isNightMode = $('body').hasClass('night-mode');
+            saveToLocalStorage('nightMode', isNightMode ? 'true' : 'false');
+            $('#night-mode-toggle').toggleClass('fa-moon fa-sun');
+            $('body').css({
+                'background-color': isNightMode ? '#2c3e50' : '#f0f2f5',
+                'color': isNightMode ? '#ecf0f1' : '#333'
+            });
+            $('.card').css('box-shadow', isNightMode ? '0 4px 15px rgba(255, 255, 255, 0.1)' : '0 4px 15px rgba(0, 0, 0, 0.1)');
+        });
+
+        // Carregar estado do Modo Noturno
+        if (loadFromLocalStorage('nightMode') === 'true') {
+            $('body').addClass('night-mode');
+            $('#night-mode-toggle').removeClass('fa-moon').addClass('fa-sun');
+            $('body').css({
+                'background-color': '#2c3e50',
+                'color': '#ecf0f1'
+            });
+            $('.card').css('box-shadow', '0 4px 15px rgba(255, 255, 255, 0.1)');
+        }
+
+        // Timer para o Forno
+        $('#start-timer').click(function () {
+            let timerDisplay = $('#timer');
+            let duration = 15 * 60; // 15 minutos em segundos
+            let interval = setInterval(function () {
+                let minutes = Math.floor(duration / 60);
+                let seconds = duration % 60;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+                timerDisplay.text(`Tempo restante: ${minutes}:${seconds}`);
+                if (--duration < 0) {
+                    clearInterval(interval);
+                    timerDisplay.text('Tempo esgotado!');
+                    alert('O tempo de forno acabou!');
+                }
+            }, 1000);
+        });
+
+        // Animação de Conclusão de Passo e Salvamento no LocalStorage
+        $('input[type="checkbox"]').on('change', function () {
+            const stepId = $(this).attr('id');
+            saveToLocalStorage(stepId, $(this).is(':checked') ? 'true' : 'false');
+            if ($(this).is(':checked')) {
+                $(this).closest('.step').css('transform', 'scale(1.05)');
+                setTimeout(() => {
+                    $(this).closest('.step').css('transform', 'scale(1)');
+                }, 300);
+            }
+        });
+
+        // Carregar estados dos checkboxes dos passos
+        $('input[type="checkbox"]').each(function () {
+            const stepId = $(this).attr('id');
+            if (loadFromLocalStorage(stepId) === 'true') {
+                $(this).prop('checked', true);
+            }
+        });
+
+        // Lista de Compras Dinâmica
+        $('#generate-shopping-list').click(function () {
+            let shoppingList = '';
+            $('.ingredient-check:not(:checked)').each(function () {
+                shoppingList += $(this).parent().text().trim() + '<br>';
+            });
+            if (shoppingList === '') {
+                shoppingList = 'Você já tem todos os ingredientes!';
+            }
+            $('#shopping-list').html('<strong>Lista de Compras:</strong><br>' + shoppingList);
+        });
+
+        // Carregar estados dos checkboxes dos ingredientes
+        $('.ingredient-check').each(function () {
+            const ingId = $(this).attr('id');
+            if (loadFromLocalStorage(ingId) === 'true') {
+                $(this).prop('checked', true);
+            }
+        });
+
+        // Salvamento dos checkboxes dos ingredientes no LocalStorage
+        $('.ingredient-check').on('change', function () {
+            const ingId = $(this).attr('id');
+            saveToLocalStorage(ingId, $(this).is(':checked') ? 'true' : 'false');
+        });
+
+    </script>
+</body>
+</html>
